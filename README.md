@@ -1,29 +1,64 @@
-# Education Pals Build Pack
+# The Head-Map Interrogator
 
-- Course: `2ad65768-198c-5614-ba63-948602ecc629`
-- Chapter: `f08a37ef-1040-5bf3-b80c-7b920f5c9251`
-- Template: `baw_c002_ch05`
-- Compiled: 2026-08-04T06:46:32.426Z
-- Verification token: `01KZ5RC7QAN9YKKBQ4B512X625`
-- Composition mode: `shipgen`
-- Workshop publication: `01KZ5RC77M5Y75Y2JSNTQ6W42V`
-- Proof challenge: `b1a6eda0e2da4e9fc36d0fe6f7fa4e32`
-- Artifact type: `baw.v3`
-- Repository: https://github.com/educationpals-builds/randeep-bhatia-check-whether-your-attention-heads-are-r-7
+**For teams auditing whether their ticket bot's attention heads actually split the work — before shipping routing logic that hides broken parts behind lucky aggregate results.**
 
-## Variants
+---
 
-- `README.md` → `README.md`
-- `charter.md` → `charter.md`
-- `blueprints/head-map-interrogator.md` → `blueprints/head-map-interrogator.md`
-- `prompts/split-walk-pack.md` → `prompts/split-walk-pack.md`
-- `METHOD.md` → `METHOD.md`
-- `VERIFY.md` → `VERIFY.md`
-- `.ep/provenance.json` → `.ep/provenance.json.md`
+## The Specimen
+
+Support ticket bot that tags and routes issues
+
+When a customer says "it broke again," the bot opens a new ticket instead of finding the old one. The failure mode: wrong person gets the ticket; the real bug waits another day.
+
+---
+
+## The Verdict
+
+**Hold.** Priya can't sign off on this routing path without first testing the matching part alone against the three pasted tickets — shipping on aggregate tag accuracy alone risks hiding a broken part behind lucky overall results.
+
+---
+
+## The Tripwire
+
+Watch standalone match-part accuracy on a fixed test set of "it/that/again" messages, tested weekly outside the full pipeline. If it drops below 80% alone, Priya blocks further rollout, since aggregate accuracy can hide this drop.
+
+---
+
+## One-Paste Rebuild
+
+Copy this block to rebuild the interrogator from the builder's audit:
+
+```
+SPECIMEN: Support ticket bot that tags and routes issues
+STANDARD: When someone says "it", the bot finds the earlier ticket about that same thing
+REALITY: Busy support chat; short replies; lots of "it / that / again"
+
+TEST SENTENCES (from Live support tickets from this week):
+- it broke again after you fixed it yesterday
+- same error on the invoice page, still open from Tuesday
+- can you reopen #44821 — that one never cleared
+
+DECIDER: ablation (rated 4)
+CALL: Hold
+TRIPWIRE: 80% standalone match-part accuracy, weekly, Priya owns
+```
+
+---
+
+## What This Tool Does
+
+A stranger describes any attention setup they're about to rely on — config, task, real inputs — and pastes a few of their own sentences. The tool interviews them for specimen, stakes, standard, and reality, walks the five splits conversationally, proposes candidate per-head findings and the measurement that would confirm each, and returns a scored audit with a severity story, a call, and a tripwire.
+
+The builder's own audit — the ticket-bot routing failure above — is embedded as the worked example, so the tool interrogates heads the way its builder does.
+
+---
 
 ## Files
 
-- `manifest.json` — verification manifest
-- `instructions.md` — paste tips per variant
+| File | Contents |
+|------|----------|
+| [charter.md](charter.md) | Full audit: specimen, standard, pasted sentences, all five split findings, severity story, call, tripwire |
+| [METHOD.md](METHOD.md) | The five-split framework spelled out letter by letter |
+| [VERIFY.md](VERIFY.md) | Stranger verification steps |
 
 <!-- educationpals-build-verified -->
